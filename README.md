@@ -1,3 +1,3 @@
-# Robotics Code Snippets
+# Autonomous Sensor Fusion
 
 TODO: Add documentation.
