@@ -23,3 +23,17 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+
+## Example Output
+
+When the node is running, you should see logs like:
+
+## Customization
+
+- Modify the `msg.linear.x` value in the script to change robot speed.
+- Add rotation with `msg.angular.z` if needed for turning.
+- Adjust the `self.create_timer()` interval to change how often commands are published.
+
+## License
+
+This project is licensed under the MIT License.
