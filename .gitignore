@@ -1,15 +1,25 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*.so
-*.ipynb_checkpoints
+# robot_simulation_node.py
+import rclpy
+from rclpy.node import Node
+from geometry_msgs.msg import Twist
 
-# ROS build files
-build/
-devel/
-log/
+class RobotSimulationNode(Node):
+    def __init__(self):
+        super().__init__('robot_simulation_node')
+        self.publisher = self.create_publisher(Twist, 'cmd_vel', 10)
+        self.timer = self.create_timer(1.0, self.publish_velocity)
 
-# Data and other artifacts
-*.bag
-*.csv
-*.log
+    def publish_velocity(self):
+        msg = Twist()
+        msg.linear.x = 0.5  # Move forward at 0.5 m/s
+        self.publisher.publish(msg)
+        self.get_logger().info('Publishing velocity command')
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = RobotSimulationNode()
+    rclpy.spin(node)
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
